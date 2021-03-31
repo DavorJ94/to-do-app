@@ -1,6 +1,6 @@
 # To Do App - React
 
-To Do App created in React.
+To Do App created in React. The app can be previewed at: https://davorj94.github.io/to-do-app/
 
 There is additional functionality, like different color rendering based on priority of the task.
 
