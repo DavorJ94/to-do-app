@@ -81,6 +81,7 @@ function App() {
         <InputItem itemAddition={handleItemAddition} />
         <SortPriorityButton
           show={showSortButton}
+          itemsLength={items.length}
           onClick={handleSortByPriority}
         >
           Sort by priority

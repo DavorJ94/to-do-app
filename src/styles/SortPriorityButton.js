@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const SortPriorityButton = styled.button`
-  display: ${({ show }) => (show ? "inline-block" : "none")};
+  display: ${({ show, itemsLength }) =>
+    show && itemsLength > 1 ? "inline-block" : "none"};
   border: none;
   outline: none;
   margin-top: 1em;
