@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap");
+.App {
+  margin-top: 2em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "New Tegomin", serif;
+}
+
+body {
+  background-color: #f8f8ff;
+}
+
+img {
+  max-width: 150px;
+}
