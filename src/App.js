@@ -23,7 +23,9 @@ function App() {
       return item;
     });
     setItems(sortItemsCheckedUnchecked([...newState]));
-    setShowSortButton(true);
+    setTimeout(() => {
+      setShowSortButton(true);
+    }, 500);
   };
 
   useEffect(() => {
@@ -59,7 +61,9 @@ function App() {
     const newId = idGenerator(items);
     const setInputValue = { ...inputValue, checked: false, id: newId };
     setItems((prevItems) => [...prevItems, setInputValue]);
-    setShowSortButton(true);
+    setTimeout(() => {
+      setShowSortButton(true);
+    }, 500);
   };
 
   const handleSortByPriority = () => {
