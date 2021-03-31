@@ -10,7 +10,7 @@ export const InputComponent = styled.div`
   padding: 1em;
   border: 2px solid black;
   border-radius: 1em;
-  background-color: #1c1c1c;
+  background-color: #25258c;
   color: white;
   width: 90%;
   max-width: 350px;
@@ -76,17 +76,19 @@ export const PriorityComponent = styled.div`
 export const PriorityText = styled.div`
   margin: 0.5em;
   font-size: 0.8rem;
+  line-height: 12px;
   letter-spacing: 1px;
   font-weight: bold;
   text-transform: uppercase;
 `;
 export const PriorityItem = styled.div`
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   background-color: ${({ name }) => (name >= 0 ? COLORS[name] : "white")};
   cursor: pointer;
   border: 0.5px solid black;
   transition: all 0.2s ease;
+  margin: 0;
 
   &:hover {
     transform: scale(2);

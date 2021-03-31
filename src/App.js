@@ -1,13 +1,18 @@
-import React, { useState } from "react";
-import "./styles/App.css";
-import todologo from "./todo logo.png";
+import React, { useEffect, useState } from "react";
+import todologo from "./images/todo logo.png";
 import ToDoItem from "./TodoItem";
 import InputItem from "./InputItem";
 import idGenerator from "./idGenerator";
 import sortItemsCheckedUnchecked from "./sortItemsCheckedUnchecked";
+import { AppContainer, Image } from "./styles/StyledApp";
+import { ToDoItemsContainer } from "./styles/ToDoItemStyle";
+import { SortPriorityButton } from "./styles/SortPriorityButton";
+import { NoToDoItemsMessage } from "./styles/NoToDoItemsMessage";
+import sortItemsByPriority from "./sortItemsByPriority";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [showSortButton, setShowSortButton] = useState(false);
 
   const handleCheckUncheck = (changedComponentName) => {
     const currentState = [...items];
@@ -18,7 +23,17 @@ function App() {
       return item;
     });
     setItems(sortItemsCheckedUnchecked([...newState]));
+    setShowSortButton(true);
   };
+
+  useEffect(() => {
+    const initialState = JSON.parse(localStorage.getItem("todos"));
+    setItems(initialState);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(items));
+  }, [items]);
 
   const handleItemRemove = (inputValue) => {
     let currentState = [...items];
@@ -44,24 +59,37 @@ function App() {
     const newId = idGenerator(items);
     const setInputValue = { ...inputValue, checked: false, id: newId };
     setItems((prevItems) => [...prevItems, setInputValue]);
+    setShowSortButton(true);
+  };
+
+  const handleSortByPriority = () => {
+    const newState = sortItemsByPriority(items);
+    setItems([...newState]);
+    setTimeout(() => {
+      setShowSortButton(false);
+    }, 1000);
   };
 
   return (
-    <div className="App">
-      <img src={todologo} alt="logo" />
-      <InputItem itemAddition={handleItemAddition} />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column-reverse",
-          width: "100%",
-          maxWidth: "350px",
-          marginBottom: "2em",
-        }}
-      >
-        {toDoItems}
-      </div>
-    </div>
+    <>
+      <AppContainer>
+        <Image src={todologo} alt="logo" />
+        <InputItem itemAddition={handleItemAddition} />
+        <SortPriorityButton
+          show={showSortButton}
+          onClick={handleSortByPriority}
+        >
+          Sort by priority
+        </SortPriorityButton>
+        <ToDoItemsContainer>
+          {toDoItems.length > 0 ? (
+            toDoItems
+          ) : (
+            <NoToDoItemsMessage>No to do items.</NoToDoItemsMessage>
+          )}
+        </ToDoItemsContainer>
+      </AppContainer>
+    </>
   );
 }
 

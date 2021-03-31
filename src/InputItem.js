@@ -38,7 +38,7 @@ export default function InputItem({ itemAddition }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputItem === "") return alert("Please fill the input box.");
+    if (inputItem === "") return alert("Please fill the TO DO item text.");
     const addedObj = { text: inputItem, priority: priority };
     itemAddition(addedObj);
     setShowInput(false);

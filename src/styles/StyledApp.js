@@ -1,17 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap");
-.App {
+import styled from "styled-components";
+
+export const AppContainer = styled.div`
   margin-top: 2em;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: "New Tegomin", serif;
-}
+`;
 
-body {
-  background-color: #f8f8ff;
-}
-
-img {
+export const Image = styled.img`
   max-width: 150px;
-}
+`;

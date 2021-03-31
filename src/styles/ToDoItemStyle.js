@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import checkedimg from "../checked.png";
-const EDGE = "20px";
-const EDGE2 = "20px";
+import checkedimg from "../images/checked.png";
 
 const COLORS = ["#6CDAE7", "#AFE313", "#F2BA49", "#E77200", "#FD0E35"];
 
@@ -10,23 +8,14 @@ export const ToDoComponent = styled.div`
   width: 90%;
   max-width: 350px;
   padding: 0.5em;
-  clip-path: polygon(
-    0 0,
-    ${EDGE2} 0,
-    calc(100% - ${EDGE2}) 0,
-    100% ${EDGE},
-    100% 100%,
-    calc(100% - ${EDGE2}) 100%,
-    ${EDGE2} 100%,
-    0 calc(100% - ${EDGE}),
-    0 0
-  );
+  margin: 1em auto 0.3em auto;
+  box-shadow: ${({ checked }) =>
+    checked ? "" : "2px 4px 5px 2px rgb(0 0 0 / 50%)"};
   background-color: ${({ priority, checked }) =>
     checked ? "grey" : COLORS[priority]};
-  border-bottom: 2px solid black;
-  border-top: 2px solid black;
   display: flex;
   align-items: center;
+  cursor: ${({ checked }) => (checked ? "normal" : "pointer")};
   text-decoration: ${({ checked }) => (checked ? "line-through" : "")};
   text-decoration-style: ${({ checked }) => (checked ? "double" : "")};
   &:hover button i {
@@ -94,4 +83,12 @@ export const TrashIcon = styled.button`
       visibility: visible;
     }
   }
+`;
+
+export const ToDoItemsContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 2em;
 `;
